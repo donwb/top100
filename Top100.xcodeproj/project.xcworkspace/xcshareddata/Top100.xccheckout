@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2C77FDDF-8442-41C4-91F8-83DB64191359</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Top100</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>91022385-42B8-4B63-A242-2898EA0B336F</key>
+		<string>https://github.com/donwb/top100.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Top100.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>91022385-42B8-4B63-A242-2898EA0B336F</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/donwb/top100.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>91022385-42B8-4B63-A242-2898EA0B336F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>91022385-42B8-4B63-A242-2898EA0B336F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Top100</string>
+		</dict>
+	</array>
+</dict>
+</plist>
