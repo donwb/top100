@@ -12,6 +12,8 @@
 
 @interface MasterViewController : UITableViewController
 
+@property (nonatomic, strong) NSArray *top100;
+
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
 @end

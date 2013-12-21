@@ -7,8 +7,8 @@
 //
 
 #import "MasterViewController.h"
-
 #import "DetailViewController.h"
+#import "RatingsSummaryTableViewCell.h"
 
 @interface MasterViewController () {
     NSMutableArray *_objects;
@@ -16,6 +16,38 @@
 @end
 
 @implementation MasterViewController
+
+- (void)downloadJSON {
+    NSString *url = @"http://nielsenservice/api/top100/date/11-01-2013";
+    
+    NSURL *jsonURL = [NSURL URLWithString:url];
+    NSURLRequest *request = [NSURLRequest requestWithURL:jsonURL];
+    
+    __weak id weakSelf = self;
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        if (data) {
+            NSArray *recipeArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            [weakSelf reloadTableViewWithRecipeRecords:recipeArray];
+            
+            NSLog(@"Got data");
+            
+        }
+        
+        else if (connectionError) {
+            NSLog(@"ERROR: %@", connectionError);
+        }
+        
+    }];
+}
+
+- (void)reloadTableViewWithRecipeRecords:(NSArray *)records {
+    self.top100 = records;
+    [self.tableView reloadData];
+}
+
 
 - (void)awakeFromNib
 {
@@ -29,12 +61,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    [self downloadJSON];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,15 +74,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender
-{
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
 
 #pragma mark - Table View
 
@@ -62,55 +84,49 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return [self.top100 count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    RatingsSummaryTableViewCell *cell = (RatingsSummaryTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    NSDictionary *record = [self.top100 objectAtIndex:indexPath.row];
+    
+    NSDictionary *nt = [record objectForKey:@"NielsenTitle"];
+    NSDictionary *actual = [record objectForKey:@"Actual"];
+    NSDictionary *national = [record objectForKey:@"National"];
+    
+    NSString *title = [nt objectForKey:@"FranchiseSeriesName"];
+    NSString *startDate = [actual objectForKey:@"StartDateString"];
+    
+    cell.show.text = title;
+    NSString *detail = [NSString stringWithFormat:@"%@ on %@", startDate, [record objectForKey:@"NetworkCode"]];
+    
+    cell.airDate.text = detail;
+    NSString *rating =  [NSString stringWithFormat:@"%@", [national valueForKey:@"Rating"]];
+    
+    cell.rating.text = [rating substringWithRange:NSMakeRange(0, 4)];
+    
+    
+    
+    
     return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
-}
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSDate *object = _objects[indexPath.row];
-        self.detailViewController.detailItem = object;
+        NSDictionary *selectedItem = [self.top100 objectAtIndex:indexPath.row];
+        
+        self.detailViewController.selectedShow = selectedItem;
     }
 }
 
@@ -118,8 +134,11 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
+        
+        
+        NSDictionary *selectedItem = [self.top100 objectAtIndex:indexPath.row];
+        
+        [[segue destinationViewController] setSelectedShow:selectedItem];
     }
 }
 

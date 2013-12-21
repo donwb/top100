@@ -17,27 +17,31 @@
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem
+
+- (void)setSelectedShow:(NSDictionary *)newSelectedShow
 {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
+    if(_selectedShow != newSelectedShow) {
+        _selectedShow = newSelectedShow;
         
-        // Update the view.
         [self configureView];
     }
-
+    
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];
-    }        
+    }
 }
 
 - (void)configureView
 {
     // Update the user interface for the detail item.
-
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
+    
+    if (self.selectedShow) {
+        NSDictionary *nt = [self.selectedShow objectForKey:@"NielsenTitle"];
+        
+        self.detailDescriptionLabel.text = [self.selectedShow objectForKey:@"NetworkCode"];
+        self.showName.text = [nt objectForKey:@"FranchiseSeriesName"];
     }
+    
 }
 
 - (void)viewDidLoad
@@ -45,6 +49,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+    
 }
 
 - (void)didReceiveMemoryWarning

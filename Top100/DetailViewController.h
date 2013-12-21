@@ -11,6 +11,8 @@
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) NSDictionary *selectedShow;
+@property (weak, nonatomic) IBOutlet UILabel *showName;
 
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @end
