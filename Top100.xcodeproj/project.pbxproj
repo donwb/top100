@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77990DF91866046E007224E4 /* TopHundred.m in Sources */ = {isa = PBXBuildFile; fileRef = 77990DF81866046E007224E4 /* TopHundred.m */; };
+		77990DFC1866062B007224E4 /* Rating.m in Sources */ = {isa = PBXBuildFile; fileRef = 77990DFB1866062B007224E4 /* Rating.m */; };
+		77990E0A186753C8007224E4 /* RMDateSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77990DFF186753C8007224E4 /* RMDateSelectionViewController.xib */; };
+		77990E0B186753C8007224E4 /* RMDateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77990E05186753C8007224E4 /* RMDateSelectionViewController.m */; };
 		EDBA5FF61865F17800F31CEF /* RatingsSummaryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBA5FF51865F17800F31CEF /* RatingsSummaryTableViewCell.m */; };
 		EDFDB8911864ED6C002150DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFDB8901864ED6C002150DF /* Foundation.framework */; };
 		EDFDB8931864ED6C002150DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFDB8921864ED6C002150DF /* CoreGraphics.framework */; };
@@ -37,6 +41,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		77990DF71866046E007224E4 /* TopHundred.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopHundred.h; sourceTree = "<group>"; };
+		77990DF81866046E007224E4 /* TopHundred.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopHundred.m; sourceTree = "<group>"; };
+		77990DFA1866062B007224E4 /* Rating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rating.h; sourceTree = "<group>"; };
+		77990DFB1866062B007224E4 /* Rating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rating.m; sourceTree = "<group>"; };
+		77990DFD18674C23007224E4 /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
+		77990E00186753C8007224E4 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/RMDateSelectionViewController.xib; sourceTree = "<group>"; };
+		77990E01186753C8007224E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RMDateSelectionViewController.xib; sourceTree = "<group>"; };
+		77990E02186753C8007224E4 /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = es.lproj/RMDateSelectionViewController.xib; sourceTree = "<group>"; };
+		77990E03186753C8007224E4 /* nl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nl; path = nl.lproj/RMDateSelectionViewController.xib; sourceTree = "<group>"; };
+		77990E04186753C8007224E4 /* RMDateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDateSelectionViewController.h; sourceTree = "<group>"; };
+		77990E05186753C8007224E4 /* RMDateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDateSelectionViewController.m; sourceTree = "<group>"; };
+		77990E06186753C8007224E4 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/RMDateSelectionViewController.xib; sourceTree = "<group>"; };
+		77990E07186753C8007224E4 /* vi */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = vi; path = vi.lproj/RMDateSelectionViewController.xib; sourceTree = "<group>"; };
+		77990E08186753C8007224E4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/RMDateSelectionViewController.xib"; sourceTree = "<group>"; };
+		77990E09186753C8007224E4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hant"; path = "zh-Hant.lproj/RMDateSelectionViewController.xib"; sourceTree = "<group>"; };
 		EDBA5FF41865F17800F31CEF /* RatingsSummaryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingsSummaryTableViewCell.h; sourceTree = "<group>"; };
 		EDBA5FF51865F17800F31CEF /* RatingsSummaryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingsSummaryTableViewCell.m; sourceTree = "<group>"; };
 		EDFDB88D1864ED6C002150DF /* Top100.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Top100.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,9 +106,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		77990DFE186753C8007224E4 /* RMDateSelectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				77990DFF186753C8007224E4 /* RMDateSelectionViewController.xib */,
+				77990E04186753C8007224E4 /* RMDateSelectionViewController.h */,
+				77990E05186753C8007224E4 /* RMDateSelectionViewController.m */,
+			);
+			path = RMDateSelectionViewController;
+			sourceTree = "<group>";
+		};
 		EDFDB8841864ED6C002150DF = {
 			isa = PBXGroup;
 			children = (
+				77990DFE186753C8007224E4 /* RMDateSelectionViewController */,
 				EDFDB8961864ED6C002150DF /* Top100 */,
 				EDFDB8BB1864ED6C002150DF /* Top100Tests */,
 				EDFDB88F1864ED6C002150DF /* Frameworks */,
@@ -126,12 +156,17 @@
 				EDFDB8A51864ED6C002150DF /* Main_iPad.storyboard */,
 				EDFDB8A81864ED6C002150DF /* MasterViewController.h */,
 				EDFDB8A91864ED6C002150DF /* MasterViewController.m */,
+				77990DFD18674C23007224E4 /* constants.h */,
 				EDFDB8AB1864ED6C002150DF /* DetailViewController.h */,
 				EDFDB8AC1864ED6C002150DF /* DetailViewController.m */,
 				EDBA5FF41865F17800F31CEF /* RatingsSummaryTableViewCell.h */,
 				EDBA5FF51865F17800F31CEF /* RatingsSummaryTableViewCell.m */,
 				EDFDB8AE1864ED6C002150DF /* Images.xcassets */,
 				EDFDB8971864ED6C002150DF /* Supporting Files */,
+				77990DF71866046E007224E4 /* TopHundred.h */,
+				77990DFA1866062B007224E4 /* Rating.h */,
+				77990DFB1866062B007224E4 /* Rating.m */,
+				77990DF81866046E007224E4 /* TopHundred.m */,
 			);
 			path = Top100;
 			sourceTree = "<group>";
@@ -224,6 +259,13 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				es,
+				nl,
+				ru,
+				vi,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = EDFDB8841864ED6C002150DF;
 			productRefGroup = EDFDB88E1864ED6C002150DF /* Products */;
@@ -241,6 +283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77990E0A186753C8007224E4 /* RMDateSelectionViewController.xib in Resources */,
 				EDFDB8A71864ED6C002150DF /* Main_iPad.storyboard in Resources */,
 				EDFDB8AF1864ED6C002150DF /* Images.xcassets in Resources */,
 				EDFDB8A41864ED6C002150DF /* Main_iPhone.storyboard in Resources */,
@@ -265,8 +308,11 @@
 			files = (
 				EDBA5FF61865F17800F31CEF /* RatingsSummaryTableViewCell.m in Sources */,
 				EDFDB8A11864ED6C002150DF /* AppDelegate.m in Sources */,
+				77990DF91866046E007224E4 /* TopHundred.m in Sources */,
 				EDFDB8AA1864ED6C002150DF /* MasterViewController.m in Sources */,
+				77990E0B186753C8007224E4 /* RMDateSelectionViewController.m in Sources */,
 				EDFDB89D1864ED6C002150DF /* main.m in Sources */,
+				77990DFC1866062B007224E4 /* Rating.m in Sources */,
 				EDFDB8AD1864ED6C002150DF /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,6 +336,21 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		77990DFF186753C8007224E4 /* RMDateSelectionViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77990E00186753C8007224E4 /* de */,
+				77990E01186753C8007224E4 /* en */,
+				77990E02186753C8007224E4 /* es */,
+				77990E03186753C8007224E4 /* nl */,
+				77990E06186753C8007224E4 /* ru */,
+				77990E07186753C8007224E4 /* vi */,
+				77990E08186753C8007224E4 /* zh-Hans */,
+				77990E09186753C8007224E4 /* zh-Hant */,
+			);
+			name = RMDateSelectionViewController.xib;
+			sourceTree = "<group>";
+		};
 		EDFDB8991864ED6C002150DF /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

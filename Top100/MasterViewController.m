@@ -9,16 +9,46 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import "RatingsSummaryTableViewCell.h"
+#import "Rating.h"
+#import "TopHundred.h"
+#import "constants.h"
+#import "RMDateSelectionViewController.h"
 
-@interface MasterViewController () {
-    NSMutableArray *_objects;
+@interface MasterViewController () <RMDateSelectionViewControllerDelegate>{
+    //NSMutableArray *_objects;
 }
 @end
 
 @implementation MasterViewController
+- (IBAction)changeDate:(id)sender {
+    
+    if (IS_IPHONE) {
+        RMDateSelectionViewController *dateSelectionVC = [RMDateSelectionViewController dateSelectionController];
+        dateSelectionVC.delegate = self;
+        [dateSelectionVC show];
 
-- (void)downloadJSON {
-    NSString *url = @"http://nielsenservice/api/top100/date/11-01-2013";
+        dateSelectionVC.datePicker.datePickerMode = UIDatePickerModeDate;
+        dateSelectionVC.datePicker.minuteInterval = 5;
+        dateSelectionVC.datePicker.date = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
+        
+    } else if (IS_IPAD) {
+        NSLog(@"IPad");
+        
+        
+    }
+}
+
+- (void)downloadJSON:(NSString *)date {
+    NSString *url;
+    if([date isEqualToString:@"one"]) {
+        url = @"http://nielsenservice/api/top100/date/11-01-2013";
+        NSLog(@"using origional url");
+    }else {
+        url = @"http://nielsenservice/api/top100/date/12-01-2013";
+        NSLog(@"using new url");
+    }
+    
+    //NSString *url = @"http://nielsenservice/api/top100/date/11-01-2013";
     
     NSURL *jsonURL = [NSURL URLWithString:url];
     NSURLRequest *request = [NSURLRequest requestWithURL:jsonURL];
@@ -28,11 +58,11 @@
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
         if (data) {
+            NSLog(@"Got data");
             NSArray *recipeArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             
-            [weakSelf reloadTableViewWithRecipeRecords:recipeArray];
             
-            NSLog(@"Got data");
+            [weakSelf reloadTableViewWithRecipeRecords:recipeArray];
             
         }
         
@@ -46,6 +76,7 @@
 - (void)reloadTableViewWithRecipeRecords:(NSArray *)records {
     self.top100 = records;
     [self.tableView reloadData];
+    NSLog(@"Reloaded!");
 }
 
 
@@ -64,7 +95,7 @@
     
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
-    [self downloadJSON];
+    [self downloadJSON:@"one"];
     
 }
 
@@ -108,6 +139,7 @@
     
     cell.rating.text = [rating substringWithRange:NSMakeRange(0, 4)];
     
+    //cell.show.text = record.showName;
     
     
     
@@ -140,6 +172,16 @@
         
         [[segue destinationViewController] setSelectedShow:selectedItem];
     }
+}
+
+#pragma mark - RMDAteSelectionViewController Delegates
+- (void)dateSelectionViewController:(RMDateSelectionViewController *)vc didSelectDate:(NSDate *)aDate {
+    NSLog(@"Successfully selected date: %@", aDate);
+    [self downloadJSON:@"two"];
+}
+
+- (void)dateSelectionViewControllerDidCancel:(RMDateSelectionViewController *)vc {
+    NSLog(@"Date selection was canceled");
 }
 
 @end

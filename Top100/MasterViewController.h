@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TopHundred.h"
 
 @class DetailViewController;
 
 @interface MasterViewController : UITableViewController
 
 @property (nonatomic, strong) NSArray *top100;
+//@property (nonatomic, strong) TopHundred *top100;
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
