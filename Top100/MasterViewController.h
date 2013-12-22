@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) NSArray *top100;
 //@property (nonatomic, strong) TopHundred *top100;
+@property (nonatomic, strong) NSDate *currentDate;
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 

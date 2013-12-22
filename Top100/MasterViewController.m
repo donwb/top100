@@ -29,7 +29,7 @@
 
         dateSelectionVC.datePicker.datePickerMode = UIDatePickerModeDate;
         dateSelectionVC.datePicker.minuteInterval = 5;
-        dateSelectionVC.datePicker.date = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
+        dateSelectionVC.datePicker.date = self.currentDate;
         
     } else if (IS_IPAD) {
         NSLog(@"IPad");
@@ -38,15 +38,14 @@
     }
 }
 
-- (void)downloadJSON:(NSString *)date {
-    NSString *url;
-    if([date isEqualToString:@"one"]) {
-        url = @"http://nielsenservice/api/top100/date/11-01-2013";
-        NSLog(@"using origional url");
-    }else {
-        url = @"http://nielsenservice/api/top100/date/12-01-2013";
-        NSLog(@"using new url");
-    }
+- (void)downloadJSON:(NSDate *)date {
+    NSString *dateString = [self convertDateToUrlString:date];
+    
+    NSString *rootURL = @"http://nielsenservice/api/top100/date/";
+    NSString *url = [rootURL stringByAppendingString:dateString];
+    
+    NSLog(@"%@", url);
+    
     
     //NSString *url = @"http://nielsenservice/api/top100/date/11-01-2013";
     
@@ -64,11 +63,16 @@
             
             [weakSelf reloadTableViewWithRecipeRecords:recipeArray];
             
+            self.navigationItem.title = [@"Top 100 for " stringByAppendingString: dateString];
+            self.currentDate = date;
+            
         }
         
         else if (connectionError) {
             NSLog(@"ERROR: %@", connectionError);
         }
+        
+        
         
     }];
 }
@@ -95,7 +99,13 @@
     
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
-    [self downloadJSON:@"one"];
+    NSDate *startDate = [NSDate date];
+    NSDateComponents *dc = [[NSDateComponents alloc]init];
+    [dc setDay:-10];
+    NSDate *initialDate = [[NSCalendar currentCalendar] dateByAddingComponents:dc toDate:startDate options:0];
+    //NSString *initialDateString = [self convertDateToUrlString:initialDate];
+    
+    [self downloadJSON:initialDate];
     
 }
 
@@ -139,10 +149,6 @@
     
     cell.rating.text = [rating substringWithRange:NSMakeRange(0, 4)];
     
-    //cell.show.text = record.showName;
-    
-    
-    
     return cell;
 }
 
@@ -177,11 +183,22 @@
 #pragma mark - RMDAteSelectionViewController Delegates
 - (void)dateSelectionViewController:(RMDateSelectionViewController *)vc didSelectDate:(NSDate *)aDate {
     NSLog(@"Successfully selected date: %@", aDate);
-    [self downloadJSON:@"two"];
+    
+    [self downloadJSON:aDate];
+    
 }
 
 - (void)dateSelectionViewControllerDidCancel:(RMDateSelectionViewController *)vc {
     NSLog(@"Date selection was canceled");
+}
+
+- (NSString *) convertDateToUrlString:(NSDate *) aDate {
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"MM-dd-YYYY"];
+    NSString *str = [formatter stringFromDate:aDate];
+    
+    return str;
 }
 
 @end
