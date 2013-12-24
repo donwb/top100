@@ -13,6 +13,7 @@
 #import "TopHundred.h"
 #import "constants.h"
 #import "RMDateSelectionViewController.h"
+#import "MRProgress.h"
 
 @interface MasterViewController () <RMDateSelectionViewControllerDelegate>{
     //NSMutableArray *_objects;
@@ -54,6 +55,10 @@
     
     __weak id weakSelf = self;
     
+    MRProgressOverlayView *progressView = [MRProgressOverlayView new];
+    [self.parentViewController.view addSubview:progressView];
+    [progressView show:YES];
+    
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
         if (data) {
@@ -66,13 +71,17 @@
             self.navigationItem.title = [@"Top 100 for " stringByAppendingString: dateString];
             self.currentDate = date;
             
+            progressView.mode = MRProgressOverlayViewModeCheckmark;
+            progressView.titleLabelText = @"Succeed";
         }
         
         else if (connectionError) {
             NSLog(@"ERROR: %@", connectionError);
+            progressView.mode = MRProgressOverlayViewModeCheckmark;
+            progressView.titleLabelText = @"Failed!";
         }
         
-        
+        [progressView dismiss:YES];
         
     }];
 }
