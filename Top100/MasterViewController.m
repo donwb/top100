@@ -63,8 +63,9 @@
         
         if (data) {
             NSLog(@"Got data");
-            NSArray *recipeArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            NSArray *tempArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             
+            NSArray *recipeArray = [self addCountToArray:tempArray];
             
             [weakSelf reloadTableViewWithRecipeRecords:recipeArray];
             
@@ -149,6 +150,7 @@
     
     NSString *title = [nt objectForKey:@"FranchiseSeriesName"];
     NSString *startDate = [actual objectForKey:@"StartDateString"];
+    NSString *ranking = [record objectForKey:@"ranking"];
     
     cell.show.text = title;
     NSString *detail = [NSString stringWithFormat:@"%@ on %@", startDate, [record objectForKey:@"NetworkCode"]];
@@ -157,6 +159,7 @@
     NSString *rating =  [NSString stringWithFormat:@"%@", [national valueForKey:@"Rating"]];
     
     cell.rating.text = [rating substringWithRange:NSMakeRange(0, 4)];
+    cell.ranking.text = ranking;
     
     return cell;
 }
@@ -187,6 +190,23 @@
         
         [[segue destinationViewController] setSelectedShow:selectedItem];
     }
+}
+
+- (NSArray *)addCountToArray:(NSArray *)sourceArray {
+    int c = 0;
+    NSMutableArray *newArray = [[NSMutableArray alloc] initWithCapacity:sourceArray.count];
+    
+    for(NSDictionary *i in sourceArray) {
+        c++;
+        [i setValue:[NSString stringWithFormat:@"%i", c] forKey:@"ranking"];
+        
+        [newArray addObject:i];
+        
+        NSLog(@"%@", i);
+    }
+
+    
+    return newArray;
 }
 
 #pragma mark - RMDAteSelectionViewController Delegates

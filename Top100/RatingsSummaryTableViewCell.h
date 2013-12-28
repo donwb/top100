@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *rating;
 @property (weak, nonatomic) IBOutlet UILabel *show;
 @property (weak, nonatomic) IBOutlet UILabel *airDate;
+@property (weak, nonatomic) IBOutlet UILabel *ranking;
 
 @end
