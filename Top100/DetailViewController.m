@@ -37,9 +37,28 @@
     
     if (self.selectedShow) {
         NSDictionary *nt = [self.selectedShow objectForKey:@"NielsenTitle"];
+        NSDictionary *acutal = [self.selectedShow objectForKey:@"Actual"];
+        NSDictionary *national = [self.selectedShow objectForKey:@"National"];
         
         self.detailDescriptionLabel.text = [self.selectedShow objectForKey:@"NetworkCode"];
         self.showName.text = [nt objectForKey:@"FranchiseSeriesName"];
+        
+        
+        self.airDate.text = [acutal objectForKey:@"StartDateString"];
+        NSString *ranking = [self.selectedShow objectForKey:@"ranking"];
+        self.ranking.text = [@"#" stringByAppendingString:ranking];
+        
+        NSString *tmp = [self.selectedShow objectForKey:@"AA"];
+        NSLog(@"%@", tmp);
+        
+        self.aa.text = [NSString stringWithFormat:@"%@",[self.selectedShow objectForKey:@"AA"]];
+        
+        self.duration.text = [NSString stringWithFormat: @"%@",[self.selectedShow objectForKey:@"Duration"] ];
+        
+        NSString *rating =  [NSString stringWithFormat:@"%@", [national valueForKey:@"Rating"]];
+        self.rating.text = [rating substringWithRange:NSMakeRange(0, 4)];
+        
+                             
     }
     
 }
