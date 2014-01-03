@@ -36,6 +36,16 @@
     // Update the user interface for the detail item.
     
     if (self.selectedShow) {
+        
+        self.hutGauge = [[MSSimpleGauge alloc] initWithFrame:CGRectMake(10, 90, 150, 90)];
+        self.hutGauge.value = 59;
+        self.hutGauge.fillArcFillColor = [UIColor colorWithRed:0.741 green:0.216 blue:0.196 alpha:1];
+        
+        self.hutGauge.backgroundColor = [UIColor clearColor];
+         
+        [self.view addSubview:self.hutGauge];
+        
+        
         NSDictionary *nt = [self.selectedShow objectForKey:@"NielsenTitle"];
         NSDictionary *acutal = [self.selectedShow objectForKey:@"Actual"];
         NSDictionary *national = [self.selectedShow objectForKey:@"National"];

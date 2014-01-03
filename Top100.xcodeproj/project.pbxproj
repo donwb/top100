@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7709D5FE18775168005E4B21 /* MSAnnotatedGauge.m in Sources */ = {isa = PBXBuildFile; fileRef = 7709D5F118775168005E4B21 /* MSAnnotatedGauge.m */; };
+		7709D5FF18775168005E4B21 /* MSArcLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7709D5F318775168005E4B21 /* MSArcLayer.m */; };
+		7709D60018775168005E4B21 /* MSGradientArcLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7709D5F618775168005E4B21 /* MSGradientArcLayer.m */; };
+		7709D60118775168005E4B21 /* MSNeedleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7709D5F818775168005E4B21 /* MSNeedleView.m */; };
+		7709D60218775168005E4B21 /* MSRangeGauge.m in Sources */ = {isa = PBXBuildFile; fileRef = 7709D5FA18775168005E4B21 /* MSRangeGauge.m */; };
+		7709D60318775168005E4B21 /* MSSimpleGauge.m in Sources */ = {isa = PBXBuildFile; fileRef = 7709D5FC18775168005E4B21 /* MSSimpleGauge.m */; };
 		77990DF91866046E007224E4 /* TopHundred.m in Sources */ = {isa = PBXBuildFile; fileRef = 77990DF81866046E007224E4 /* TopHundred.m */; };
 		77990DFC1866062B007224E4 /* Rating.m in Sources */ = {isa = PBXBuildFile; fileRef = 77990DFB1866062B007224E4 /* Rating.m */; };
 		77990E0A186753C8007224E4 /* RMDateSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77990DFF186753C8007224E4 /* RMDateSelectionViewController.xib */; };
@@ -50,6 +56,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7709D5F018775168005E4B21 /* MSAnnotatedGauge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSAnnotatedGauge.h; sourceTree = "<group>"; };
+		7709D5F118775168005E4B21 /* MSAnnotatedGauge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSAnnotatedGauge.m; sourceTree = "<group>"; };
+		7709D5F218775168005E4B21 /* MSArcLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSArcLayer.h; sourceTree = "<group>"; };
+		7709D5F318775168005E4B21 /* MSArcLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSArcLayer.m; sourceTree = "<group>"; };
+		7709D5F418775168005E4B21 /* MSArcLayerSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSArcLayerSubclass.h; sourceTree = "<group>"; };
+		7709D5F518775168005E4B21 /* MSGradientArcLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSGradientArcLayer.h; sourceTree = "<group>"; };
+		7709D5F618775168005E4B21 /* MSGradientArcLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSGradientArcLayer.m; sourceTree = "<group>"; };
+		7709D5F718775168005E4B21 /* MSNeedleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSNeedleView.h; sourceTree = "<group>"; };
+		7709D5F818775168005E4B21 /* MSNeedleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSNeedleView.m; sourceTree = "<group>"; };
+		7709D5F918775168005E4B21 /* MSRangeGauge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSRangeGauge.h; sourceTree = "<group>"; };
+		7709D5FA18775168005E4B21 /* MSRangeGauge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSRangeGauge.m; sourceTree = "<group>"; };
+		7709D5FB18775168005E4B21 /* MSSimpleGauge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSimpleGauge.h; sourceTree = "<group>"; };
+		7709D5FC18775168005E4B21 /* MSSimpleGauge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSimpleGauge.m; sourceTree = "<group>"; };
+		7709D5FD18775168005E4B21 /* MSSimpleGaugeSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSimpleGaugeSubclass.h; sourceTree = "<group>"; };
 		77990DF71866046E007224E4 /* TopHundred.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopHundred.h; sourceTree = "<group>"; };
 		77990DF81866046E007224E4 /* TopHundred.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopHundred.m; sourceTree = "<group>"; };
 		77990DFA1866062B007224E4 /* Rating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rating.h; sourceTree = "<group>"; };
@@ -135,6 +155,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7709D5EF18775168005E4B21 /* Gauges */ = {
+			isa = PBXGroup;
+			children = (
+				7709D5F018775168005E4B21 /* MSAnnotatedGauge.h */,
+				7709D5F118775168005E4B21 /* MSAnnotatedGauge.m */,
+				7709D5F218775168005E4B21 /* MSArcLayer.h */,
+				7709D5F318775168005E4B21 /* MSArcLayer.m */,
+				7709D5F418775168005E4B21 /* MSArcLayerSubclass.h */,
+				7709D5F518775168005E4B21 /* MSGradientArcLayer.h */,
+				7709D5F618775168005E4B21 /* MSGradientArcLayer.m */,
+				7709D5F718775168005E4B21 /* MSNeedleView.h */,
+				7709D5F818775168005E4B21 /* MSNeedleView.m */,
+				7709D5F918775168005E4B21 /* MSRangeGauge.h */,
+				7709D5FA18775168005E4B21 /* MSRangeGauge.m */,
+				7709D5FB18775168005E4B21 /* MSSimpleGauge.h */,
+				7709D5FC18775168005E4B21 /* MSSimpleGauge.m */,
+				7709D5FD18775168005E4B21 /* MSSimpleGaugeSubclass.h */,
+			);
+			path = Gauges;
+			sourceTree = "<group>";
+		};
 		77990DFE186753C8007224E4 /* RMDateSelectionViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +241,7 @@
 		EDFDB8841864ED6C002150DF = {
 			isa = PBXGroup;
 			children = (
+				7709D5EF18775168005E4B21 /* Gauges */,
 				77990E0D18690C65007224E4 /* MRProgress */,
 				77990DFE186753C8007224E4 /* RMDateSelectionViewController */,
 				EDFDB8961864ED6C002150DF /* Top100 */,
@@ -392,18 +434,24 @@
 				EDFDB8A11864ED6C002150DF /* AppDelegate.m in Sources */,
 				77990E2D18690C65007224E4 /* MRWeakProxy.m in Sources */,
 				77990DF91866046E007224E4 /* TopHundred.m in Sources */,
+				7709D60018775168005E4B21 /* MSGradientArcLayer.m in Sources */,
 				77990E2618690C65007224E4 /* UIImage+MRImageEffects.m in Sources */,
 				77990E2C18690C65007224E4 /* MRMessageInterceptor.m in Sources */,
+				7709D5FE18775168005E4B21 /* MSAnnotatedGauge.m in Sources */,
 				77990E2918690C65007224E4 /* MRIconView.m in Sources */,
+				7709D60218775168005E4B21 /* MSRangeGauge.m in Sources */,
 				EDFDB8AA1864ED6C002150DF /* MasterViewController.m in Sources */,
 				77990E2718690C65007224E4 /* MRActivityIndicatorView.m in Sources */,
 				77990E0B186753C8007224E4 /* RMDateSelectionViewController.m in Sources */,
+				7709D60318775168005E4B21 /* MSSimpleGauge.m in Sources */,
 				77990E2A18690C65007224E4 /* MRNavigationBarProgressView.m in Sources */,
 				77990E2B18690C65007224E4 /* MRProgressOverlayView.m in Sources */,
 				77990E2818690C65007224E4 /* MRCircularProgressView.m in Sources */,
 				77990E2518690C65007224E4 /* MRBlurView.m in Sources */,
+				7709D5FF18775168005E4B21 /* MSArcLayer.m in Sources */,
 				EDFDB89D1864ED6C002150DF /* main.m in Sources */,
 				77990DFC1866062B007224E4 /* Rating.m in Sources */,
+				7709D60118775168005E4B21 /* MSNeedleView.m in Sources */,
 				EDFDB8AD1864ED6C002150DF /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

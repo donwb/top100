@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSSimpleGauge.h"
 
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate>
 
@@ -20,4 +21,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *rating;
 
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+
+
+@property (strong, nonatomic) MSSimpleGauge *hutGauge;
+
 @end
