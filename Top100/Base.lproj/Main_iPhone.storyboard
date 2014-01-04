@@ -359,13 +359,27 @@
                     <connections>
                         <outlet property="aa" destination="XaW-sD-VVH" id="efK-kC-4y6"/>
                         <outlet property="airDate" destination="wYR-5r-X3o" id="99w-TJ-pNb"/>
+                        <outlet property="breakoutIndicator" destination="4vZ-B4-el6" id="uBh-5r-b2S"/>
+                        <outlet property="comsatIndicator" destination="UDC-EZ-xTg" id="bVB-vA-NPL"/>
                         <outlet property="delivery" destination="p36-fF-9TN" id="6NJ-iD-2Qw"/>
                         <outlet property="detailDescriptionLabel" destination="Lei-5M-9Gs" id="sCT-F7-F6f"/>
                         <outlet property="duration" destination="R7r-zj-EEQ" id="PfN-sD-Ouk"/>
+                        <outlet property="gappedIndicator" destination="Ibt-FK-Mxj" id="3pv-NE-EXn"/>
                         <outlet property="hutLabel" destination="mph-D6-uc8" id="VYB-bo-ycP"/>
+                        <outlet property="liveIndicator" destination="JHi-cH-SFh" id="SuE-th-miX"/>
+                        <outlet property="movieIndicator" destination="DJC-c3-O0b" id="m5g-KS-leF"/>
+                        <outlet property="oldComposite" destination="rz0-v6-rwS" id="M93-2b-Lfp"/>
+                        <outlet property="oldDelivery" destination="WEN-Gm-f6a" id="mnG-lo-prz"/>
+                        <outlet property="oldVPVH" destination="dPv-iG-vND" id="8f2-of-lea"/>
+                        <outlet property="premiereIndicator" destination="jaP-Kw-HxP" id="Gtr-yq-gON"/>
                         <outlet property="ranking" destination="TNt-XT-efk" id="ynw-XV-5IG"/>
                         <outlet property="rating" destination="fCd-uF-BNK" id="Fg4-YK-2zF"/>
+                        <outlet property="repeatIndicator" destination="gbk-by-RzP" id="WPU-xT-7e2"/>
                         <outlet property="showName" destination="s3s-Ab-sfQ" id="x4Z-Kv-iy2"/>
+                        <outlet property="specialIndicator" destination="HTu-M4-mLL" id="Xjm-nZ-43G"/>
+                        <outlet property="youngComposite" destination="Sx4-s7-cKm" id="MbI-Uy-MrA"/>
+                        <outlet property="youngDelivery" destination="HsS-cp-2ct" id="lD1-T4-1ux"/>
+                        <outlet property="youngVPVH" destination="WTC-XO-CZ0" id="nZ5-Tz-c5i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
