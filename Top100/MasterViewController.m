@@ -202,7 +202,7 @@
         
         [newArray addObject:i];
         
-        NSLog(@"%@", i);
+        //NSLog(@"%@", i);
     }
 
     

@@ -59,9 +59,11 @@
         self.ranking.text = [@"#" stringByAppendingString:ranking];
         
         NSString *tmp = [self.selectedShow objectForKey:@"AA"];
-        NSLog(@"%@", tmp);
+        NSString *theAA = [self convertToShortNumber:tmp];
         
-        self.aa.text = [NSString stringWithFormat:@"%@",[self.selectedShow objectForKey:@"AA"]];
+        NSLog(@"%@", theAA);
+        
+        self.aa.text = theAA; //[NSString stringWithFormat:@"%@",[self.selectedShow objectForKey:@"AA"]];
         
         self.duration.text = [NSString stringWithFormat: @"%@",[self.selectedShow objectForKey:@"Duration"] ];
         
@@ -101,6 +103,25 @@
     // Called when the view is shown again in the split view, invalidating the button and popover controller.
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
+}
+
+- (NSString *) convertToShortNumber:(NSString *) number {
+    NSString *retval;
+    
+    @try {
+        NSNumberFormatter *f = [[NSNumberFormatter alloc]init];
+        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+        
+        NSString *s = [f stringFromNumber:number];
+        retval = [s substringWithRange:NSMakeRange(0, 5)];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@");
+    }
+    @finally {
+        return retval;
+    }
+    
 }
 
 @end
