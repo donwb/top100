@@ -362,6 +362,7 @@
                         <outlet property="delivery" destination="p36-fF-9TN" id="6NJ-iD-2Qw"/>
                         <outlet property="detailDescriptionLabel" destination="Lei-5M-9Gs" id="sCT-F7-F6f"/>
                         <outlet property="duration" destination="R7r-zj-EEQ" id="PfN-sD-Ouk"/>
+                        <outlet property="hutLabel" destination="mph-D6-uc8" id="VYB-bo-ycP"/>
                         <outlet property="ranking" destination="TNt-XT-efk" id="ynw-XV-5IG"/>
                         <outlet property="rating" destination="fCd-uF-BNK" id="Fg4-YK-2zF"/>
                         <outlet property="showName" destination="s3s-Ab-sfQ" id="x4Z-Kv-iy2"/>

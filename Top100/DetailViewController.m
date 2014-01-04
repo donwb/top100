@@ -38,7 +38,7 @@
     if (self.selectedShow) {
         
         self.hutGauge = [[MSSimpleGauge alloc] initWithFrame:CGRectMake(10, 90, 150, 90)];
-        self.hutGauge.value = 59;
+        //self.hutGauge.value = 59;
         self.hutGauge.fillArcFillColor = [UIColor colorWithRed:0.741 green:0.216 blue:0.196 alpha:1];
         
         self.hutGauge.backgroundColor = [UIColor clearColor];
@@ -52,6 +52,10 @@
         NSDictionary *young = [self.selectedShow objectForKey:@"Demos"][0];
         NSDictionary *old = [self.selectedShow objectForKey:@"Demos"][1];
     
+        float hut = [[national objectForKey:@"HouseholdsUsingTelevisionPercent"] floatValue];
+        self.hutGauge.value = hut;
+        self.hutLabel.text = [self formatHutFloat:hut];
+        
         self.detailDescriptionLabel.text = [self.selectedShow objectForKey:@"NetworkCode"];
         self.showName.text = [nt objectForKey:@"FranchiseSeriesName"];
         
@@ -124,12 +128,17 @@
         
     }
     @catch (NSException *exception) {
-        NSLog(@"%@");
+        NSLog(@"%@", exception);
     }
     @finally {
         return retval;
     }
-    
+}
+
+- (NSString *) formatHutFloat:(float) hutValue {
+    int i = (int)hutValue;
+    NSString *retValue = [NSString stringWithFormat:@"%d%%", i];
+    return retValue;
 }
 
 @end
