@@ -49,9 +49,13 @@
         NSDictionary *nt = [self.selectedShow objectForKey:@"NielsenTitle"];
         NSDictionary *acutal = [self.selectedShow objectForKey:@"Actual"];
         NSDictionary *national = [self.selectedShow objectForKey:@"National"];
-        
+        NSDictionary *young = [self.selectedShow objectForKey:@"Demos"][0];
+        NSDictionary *old = [self.selectedShow objectForKey:@"Demos"][1];
+    
         self.detailDescriptionLabel.text = [self.selectedShow objectForKey:@"NetworkCode"];
         self.showName.text = [nt objectForKey:@"FranchiseSeriesName"];
+        
+        self.delivery.text = [self convertToShortNumber:[young objectForKey:@"Delivery"]];
         
         
         self.airDate.text = [acutal objectForKey:@"StartDateString"];
@@ -60,9 +64,6 @@
         
         NSString *tmp = [self.selectedShow objectForKey:@"AA"];
         NSString *theAA = [self convertToShortNumber:tmp];
-        
-        NSLog(@"%@", theAA);
-        
         self.aa.text = theAA; //[NSString stringWithFormat:@"%@",[self.selectedShow objectForKey:@"AA"]];
         
         self.duration.text = [NSString stringWithFormat: @"%@",[self.selectedShow objectForKey:@"Duration"] ];
@@ -113,7 +114,14 @@
         [f setNumberStyle:NSNumberFormatterDecimalStyle];
         
         NSString *s = [f stringFromNumber:number];
-        retval = [s substringWithRange:NSMakeRange(0, 5)];
+        NSRange r = [s rangeOfString:@","];
+        if(r.location > 1) {
+            retval = [s substringWithRange:NSMakeRange(0, 3)];
+        } else {
+            retval = [s substringWithRange:NSMakeRange(0, 5)];
+        }
+        
+        
     }
     @catch (NSException *exception) {
         NSLog(@"%@");

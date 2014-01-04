@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *aa;
 @property (weak, nonatomic) IBOutlet UILabel *duration;
 @property (weak, nonatomic) IBOutlet UILabel *rating;
+@property (weak, nonatomic) IBOutlet UILabel *delivery;
 
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
