@@ -35,6 +35,14 @@
     } else if (IS_IPAD) {
         NSLog(@"IPad");
         
+        RMDateSelectionViewController *dateSelectionVC = [RMDateSelectionViewController dateSelectionController];
+        dateSelectionVC.delegate = self;
+        [dateSelectionVC show];
+        
+        dateSelectionVC.datePicker.datePickerMode = UIDatePickerModeDate;
+        dateSelectionVC.datePicker.minuteInterval = 5;
+        dateSelectionVC.datePicker.date = self.currentDate;
+
         
     }
 }
