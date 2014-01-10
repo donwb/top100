@@ -51,12 +51,14 @@
     NSString *dateString = [self convertDateToUrlString:date];
     
     NSString *rootURL = @"http://nielsenservice/api/top100/date/";
+    //NSString *rootURL = @"http://137.117.72.74:4001/nielsentop100/";
     NSString *url = [rootURL stringByAppendingString:dateString];
     
     NSLog(@"%@", url);
     
     
     //NSString *url = @"http://nielsenservice/api/top100/date/11-01-2013";
+    // new url: http://137.117.72.74:4001/nielsentop100/2014-01-02/2014-01-03
     
     NSURL *jsonURL = [NSURL URLWithString:url];
     NSURLRequest *request = [NSURLRequest requestWithURL:jsonURL];
