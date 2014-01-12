@@ -14,6 +14,7 @@
 #import "constants.h"
 #import "RMDateSelectionViewController.h"
 #import "MRProgress.h"
+#import "RatingsFormatUtils.h"
 
 @interface MasterViewController () <RMDateSelectionViewControllerDelegate>{
     //NSMutableArray *_objects;
@@ -166,11 +167,13 @@
     NSDictionary *national = [record objectForKey:@"National"];
     
     NSString *title = [nt objectForKey:@"FranchiseSeriesName"];
-    NSString *startDate = [actual objectForKey:@"StartDateString"];
     NSString *ranking = [record objectForKey:@"ranking"];
     
+    NSString *startDate = [actual objectForKey:@"StartDate"];
+    NSString *prettyDate = [RatingsFormatUtils stringFromJSONDateString:startDate];
+    
     cell.show.text = title;
-    NSString *detail = [NSString stringWithFormat:@"%@ on %@", startDate, [record objectForKey:@"NetworkCode"]];
+    NSString *detail = [NSString stringWithFormat:@"%@ on %@", prettyDate, [record objectForKey:@"NetworkCode"]];
     
     cell.airDate.text = detail;
     NSString *rating =  [NSString stringWithFormat:@"%@", [national valueForKey:@"Rating"]];

@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "constants.h"
+#import "RatingsFormatUtils.h"
 
 @interface DetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -66,12 +67,14 @@
         
         // Show Detail
         self.detailDescriptionLabel.text = [self.selectedShow objectForKey:@"NetworkCode"];
-        self.airDate.text = [acutal objectForKey:@"StartDateString"];
         self.showName.text = [nt objectForKey:@"FranchiseSeriesName"];
         NSString *tmp = [self.selectedShow objectForKey:@"AA"];
         NSString *theAA = [self convertToShortNumber:tmp];
         self.aa.text = theAA; //[NSString stringWithFormat:@"%@",[self.selectedShow objectForKey:@"AA"]];
         self.duration.text = [NSString stringWithFormat: @"%@",[self.selectedShow objectForKey:@"Duration"] ];
+        NSString *startDate = [RatingsFormatUtils stringFromJSONDateString:[acutal objectForKey:@"StartDate"]];
+        self.airDate.text = startDate;
+        
         
         // Detail
         NSString *yDelivery = [self convertToShortNumber:[young objectForKey:@"Delivery"]];

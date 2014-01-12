@@ -26,6 +26,7 @@
 		77990E2B18690C65007224E4 /* MRProgressOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77990E1D18690C65007224E4 /* MRProgressOverlayView.m */; };
 		77990E2C18690C65007224E4 /* MRMessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 77990E2118690C65007224E4 /* MRMessageInterceptor.m */; };
 		77990E2D18690C65007224E4 /* MRWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 77990E2418690C65007224E4 /* MRWeakProxy.m */; };
+		EDA9F8081882F752008D85F7 /* RatingsFormatUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA9F8071882F752008D85F7 /* RatingsFormatUtils.m */; };
 		EDBA5FF61865F17800F31CEF /* RatingsSummaryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBA5FF51865F17800F31CEF /* RatingsSummaryTableViewCell.m */; };
 		EDFDB8911864ED6C002150DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFDB8901864ED6C002150DF /* Foundation.framework */; };
 		EDFDB8931864ED6C002150DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFDB8921864ED6C002150DF /* CoreGraphics.framework */; };
@@ -105,6 +106,8 @@
 		77990E2218690C65007224E4 /* MRProgressHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRProgressHelper.h; sourceTree = "<group>"; };
 		77990E2318690C65007224E4 /* MRWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRWeakProxy.h; sourceTree = "<group>"; };
 		77990E2418690C65007224E4 /* MRWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRWeakProxy.m; sourceTree = "<group>"; };
+		EDA9F8061882F752008D85F7 /* RatingsFormatUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingsFormatUtils.h; sourceTree = "<group>"; };
+		EDA9F8071882F752008D85F7 /* RatingsFormatUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingsFormatUtils.m; sourceTree = "<group>"; };
 		EDBA5FF41865F17800F31CEF /* RatingsSummaryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingsSummaryTableViewCell.h; sourceTree = "<group>"; };
 		EDBA5FF51865F17800F31CEF /* RatingsSummaryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingsSummaryTableViewCell.m; sourceTree = "<group>"; };
 		EDFDB88D1864ED6C002150DF /* Top100.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Top100.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -277,6 +280,8 @@
 				EDFDB89F1864ED6C002150DF /* AppDelegate.h */,
 				EDFDB8A01864ED6C002150DF /* AppDelegate.m */,
 				EDFDB8A21864ED6C002150DF /* Main_iPhone.storyboard */,
+				EDA9F8061882F752008D85F7 /* RatingsFormatUtils.h */,
+				EDA9F8071882F752008D85F7 /* RatingsFormatUtils.m */,
 				EDFDB8A51864ED6C002150DF /* Main_iPad.storyboard */,
 				EDFDB8A81864ED6C002150DF /* MasterViewController.h */,
 				EDFDB8A91864ED6C002150DF /* MasterViewController.m */,
@@ -450,6 +455,7 @@
 				77990E2A18690C65007224E4 /* MRNavigationBarProgressView.m in Sources */,
 				77990E2B18690C65007224E4 /* MRProgressOverlayView.m in Sources */,
 				77990E2818690C65007224E4 /* MRCircularProgressView.m in Sources */,
+				EDA9F8081882F752008D85F7 /* RatingsFormatUtils.m in Sources */,
 				77990E2518690C65007224E4 /* MRBlurView.m in Sources */,
 				7709D5FF18775168005E4B21 /* MSArcLayer.m in Sources */,
 				EDFDB89D1864ED6C002150DF /* main.m in Sources */,
