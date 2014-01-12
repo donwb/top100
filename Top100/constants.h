@@ -9,6 +9,8 @@
 #ifndef Top100_constants_h
 #define Top100_constants_h
 
+#define USE_INTERNAL_URL NO
+
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 

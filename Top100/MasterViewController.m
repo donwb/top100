@@ -50,15 +50,22 @@
 - (void)downloadJSON:(NSDate *)date {
     NSString *dateString = [self convertDateToUrlString:date];
     
-    NSString *rootURL = @"http://nielsenservice/api/top100/date/";
-    //NSString *rootURL = @"http://137.117.72.74:4001/nielsentop100/";
+    // This code should be removed once external url settles down
+    NSString *rootURL;
+    if(USE_INTERNAL_URL)
+    {
+        rootURL = @"http://nielsenservice/api/top100/date/";
+        NSLog(@"Using Internal URL");
+    } else
+    {
+        rootURL = @"http://137.117.72.74:4001/nielsentop100/";
+        NSLog(@"Using external URL");
+    }
+    
     NSString *url = [rootURL stringByAppendingString:dateString];
     
+
     NSLog(@"%@", url);
-    
-    
-    //NSString *url = @"http://nielsenservice/api/top100/date/11-01-2013";
-    // new url: http://137.117.72.74:4001/nielsentop100/2014-01-02/2014-01-03
     
     NSURL *jsonURL = [NSURL URLWithString:url];
     NSURLRequest *request = [NSURLRequest requestWithURL:jsonURL];
@@ -232,9 +239,17 @@
 }
 
 - (NSString *) convertDateToUrlString:(NSDate *) aDate {
+    // 2013-12-27
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"MM-dd-YYYY"];
+    
+    // This code should be removed once external url settles down
+    if(USE_INTERNAL_URL){
+        [formatter setDateFormat:@"MM-dd-YYYY"];
+    } else {
+        [formatter setDateFormat:@"YYYY-MM-dd"];
+    }
+    
     NSString *str = [formatter stringFromDate:aDate];
     
     return str;
