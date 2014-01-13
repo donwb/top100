@@ -26,4 +26,10 @@
 	return result;
 }
 
++ (NSString *) formatHutFloat:(float) hutValue {
+    int i = (int)hutValue;
+    NSString *retValue = [NSString stringWithFormat:@"%d%%", i];
+    return retValue;
+}
+
 @end

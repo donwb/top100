@@ -57,7 +57,7 @@
         // HUT
         float hut = [[national objectForKey:@"HouseholdsUsingTelevisionPercent"] floatValue];
         self.hutGauge.value = hut;
-        self.hutLabel.text = [self formatHutFloat:hut];
+        self.hutLabel.text = [RatingsFormatUtils formatHutFloat:hut];
         
         // Top Info
         NSString *rating =  [NSString stringWithFormat:@"%@", [national valueForKey:@"Rating"]];
@@ -183,11 +183,6 @@
     }
 }
 
-- (NSString *) formatHutFloat:(float) hutValue {
-    int i = (int)hutValue;
-    NSString *retValue = [NSString stringWithFormat:@"%d%%", i];
-    return retValue;
-}
 
 - (NSString *) friendlyStringFromFloat:(float) floatVal {
     NSNumber *n = [NSNumber numberWithFloat:floatVal];
