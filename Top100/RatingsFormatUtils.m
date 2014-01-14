@@ -32,4 +32,48 @@
     return retValue;
 }
 
+
++ (NSString *) convertToShortNumber:(NSString *) number {
+    NSString *retval;
+    
+    @try {
+        NSNumberFormatter *f = [[NSNumberFormatter alloc]init];
+        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+        
+        NSString *s = [f stringFromNumber:number];
+        
+        NSArray *numberComponents = [s componentsSeparatedByString:@","];
+        
+        switch (numberComponents.count) {
+            case 0:
+                retval = s;
+                break;
+            case 2:
+                retval = numberComponents[0];
+                break;
+            case 3:
+                retval = [[numberComponents[0] stringByAppendingString:@","]
+                          stringByAppendingString:numberComponents[1]];
+            default:
+                break;
+        }
+        
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception);
+    }
+    @finally {
+        return retval;
+    }
+}
+
++ (NSString *) friendlyStringFromFloat:(float) floatVal {
+    NSNumber *n = [NSNumber numberWithFloat:floatVal];
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+    [formatter setMaximumFractionDigits:2];
+    
+    return [formatter stringFromNumber:n];
+}
+
+
 @end

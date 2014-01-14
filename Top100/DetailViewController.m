@@ -69,7 +69,7 @@
         self.detailDescriptionLabel.text = [self.selectedShow objectForKey:@"NetworkCode"];
         self.showName.text = [nt objectForKey:@"FranchiseSeriesName"];
         NSString *tmp = [self.selectedShow objectForKey:@"AA"];
-        NSString *theAA = [self convertToShortNumber:tmp];
+        NSString *theAA = [RatingsFormatUtils convertToShortNumber:tmp];
         self.aa.text = theAA; //[NSString stringWithFormat:@"%@",[self.selectedShow objectForKey:@"AA"]];
         self.duration.text = [NSString stringWithFormat: @"%@",[self.selectedShow objectForKey:@"Duration"] ];
         NSString *startDate = [RatingsFormatUtils stringFromJSONDateString:[acutal objectForKey:@"StartDate"]];
@@ -77,16 +77,16 @@
         
         
         // Detail
-        NSString *yDelivery = [self convertToShortNumber:[young objectForKey:@"Delivery"]];
+        NSString *yDelivery = [RatingsFormatUtils convertToShortNumber:[young objectForKey:@"Delivery"]];
         self.delivery.text = yDelivery;
         self.youngDelivery.text = yDelivery;
-        self.oldDelivery.text = [self convertToShortNumber:[old objectForKey:@"Delivery"]];
+        self.oldDelivery.text = [RatingsFormatUtils convertToShortNumber:[old objectForKey:@"Delivery"]];
         
-        self.oldVPVH.text = [self friendlyStringFromFloat:[[old objectForKey:@"VPVH"] floatValue]];
-        self.youngVPVH.text = [self friendlyStringFromFloat:[[young objectForKey:@"VPVH"] floatValue]];
+        self.oldVPVH.text = [RatingsFormatUtils friendlyStringFromFloat:[[old objectForKey:@"VPVH"] floatValue]];
+        self.youngVPVH.text = [RatingsFormatUtils friendlyStringFromFloat:[[young objectForKey:@"VPVH"] floatValue]];
         
-        self.oldComposite.text = [self friendlyStringFromFloat:[[old objectForKey:@"Composite"] floatValue]];
-        self.youngComposite.text = [self friendlyStringFromFloat:[[young objectForKey:@"Composite"] floatValue]];
+        self.oldComposite.text = [RatingsFormatUtils friendlyStringFromFloat:[[old objectForKey:@"Composite"] floatValue]];
+        self.youngComposite.text = [RatingsFormatUtils friendlyStringFromFloat:[[young objectForKey:@"Composite"] floatValue]];
         
         
         
@@ -158,38 +158,10 @@
     self.masterPopoverController = nil;
 }
 
-- (NSString *) convertToShortNumber:(NSString *) number {
-    NSString *retval;
-    
-    @try {
-        NSNumberFormatter *f = [[NSNumberFormatter alloc]init];
-        [f setNumberStyle:NSNumberFormatterDecimalStyle];
-        
-        NSString *s = [f stringFromNumber:number];
-        NSRange r = [s rangeOfString:@","];
-        if(r.location > 1) {
-            retval = [s substringWithRange:NSMakeRange(0, 3)];
-        } else {
-            retval = [s substringWithRange:NSMakeRange(0, 5)];
-        }
-        
-        
-    }
-    @catch (NSException *exception) {
-        NSLog(@"%@", exception);
-    }
-    @finally {
-        return retval;
-    }
+- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation {
+    return NO;
 }
 
 
-- (NSString *) friendlyStringFromFloat:(float) floatVal {
-    NSNumber *n = [NSNumber numberWithFloat:floatVal];
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
-    [formatter setMaximumFractionDigits:2];
-    
-    return [formatter stringFromNumber:n];
-}
 
 @end

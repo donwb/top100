@@ -11,4 +11,6 @@
 @interface RatingsFormatUtils : NSObject
 +(NSString *)stringFromJSONDateString:(NSString *) dateString;
 +(NSString *) formatHutFloat:(float) hutValue;
++(NSString *)convertToShortNumber:(NSString *)number;
++(NSString *) friendlyStringFromFloat:(float)floatVal;
 @end
