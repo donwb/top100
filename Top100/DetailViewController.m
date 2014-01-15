@@ -40,7 +40,14 @@
     if (self.selectedShow) {
         
         // Setup the Gauge for HUT
-        self.hutGauge = [[MSSimpleGauge alloc] initWithFrame:CGRectMake(10, 90, 150, 90)];
+        CGRect rect;
+        if(IS_IPHONE) {
+            rect = CGRectMake(10, 90, 150, 90);
+        }else {
+            rect = CGRectMake(3, 130, 230, 130);
+        }
+        
+        self.hutGauge = [[MSSimpleGauge alloc] initWithFrame:rect];
         self.hutGauge.fillArcFillColor = [UIColor colorWithRed:0.741 green:0.216 blue:0.196 alpha:1];
         self.hutGauge.backgroundColor = [UIColor clearColor];
         [self.view addSubview:self.hutGauge];

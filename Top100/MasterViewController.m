@@ -59,7 +59,7 @@
         NSLog(@"Using Internal URL");
     } else
     {
-        rootURL = @"http://137.117.72.74:4001/nielsentop100/";
+        rootURL = @"http://flow.tbs.io/nielsentop100/";
         NSLog(@"Using external URL");
     }
     
@@ -110,18 +110,20 @@
     [self.tableView reloadData];
     
     // Select the first item
-    if(IS_IPAD) {
-        NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
-        if ([self.tableView.delegate respondsToSelector:@selector(tableView:willSelectRowAtIndexPath:)]) {
-            [self.tableView.delegate tableView:self.tableView willSelectRowAtIndexPath:indexPath];
+    if(records.count > 0){
+        if(IS_IPAD) {
+            NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+            if ([self.tableView.delegate respondsToSelector:@selector(tableView:willSelectRowAtIndexPath:)]) {
+                [self.tableView.delegate tableView:self.tableView willSelectRowAtIndexPath:indexPath];
+            }
+            
+            [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition: UITableViewScrollPositionNone];
+            
+            if ([self.tableView.delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]) {
+                [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+            }
+            
         }
-        
-        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition: UITableViewScrollPositionNone];
-        
-        if ([self.tableView.delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]) {
-            [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:indexPath];
-        }
-        
     }
     
     NSLog(@"Reloaded!");
