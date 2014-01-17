@@ -13,4 +13,5 @@
 +(NSString *) formatHutFloat:(float) hutValue;
 +(NSString *)convertToShortNumber:(NSString *)number;
 +(NSString *) friendlyStringFromFloat:(float)floatVal;
++(NSString *)formatDuration:(NSString *) time;
 @end

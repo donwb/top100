@@ -75,5 +75,9 @@
     return [formatter stringFromNumber:n];
 }
 
++ (NSString *)formatDuration:(NSString *)time {
+    return [@":" stringByAppendingString:time];
+}
+
 
 @end

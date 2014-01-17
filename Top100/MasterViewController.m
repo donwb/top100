@@ -181,18 +181,18 @@
 
     NSDictionary *record = [self.top100 objectAtIndex:indexPath.row];
     
-    NSDictionary *nt = [record objectForKey:@"NielsenTitle"];
-    NSDictionary *actual = [record objectForKey:@"Actual"];
-    NSDictionary *national = [record objectForKey:@"National"];
+    NSDictionary *nt = record[@"NielsenTitle"];
+    NSDictionary *actual = record[@"Actual"];
+    NSDictionary *national = record[@"National"];
     
-    NSString *title = [nt objectForKey:@"FranchiseSeriesName"];
-    NSString *ranking = [record objectForKey:@"ranking"];
+    NSString *title = nt[@"FranchiseSeriesName"];
+    NSString *ranking = record[@"ranking"];
     
-    NSString *startDate = [actual objectForKey:@"StartDate"];
+    NSString *startDate = actual[@"StartDate"];
     NSString *prettyDate = [RatingsFormatUtils stringFromJSONDateString:startDate];
     
     cell.show.text = title;
-    NSString *detail = [NSString stringWithFormat:@"%@ on %@", prettyDate, [record objectForKey:@"NetworkCode"]];
+    NSString *detail = [NSString stringWithFormat:@"%@ on %@", prettyDate, record[@"NetworkCode"]];
     
     cell.airDate.text = detail;
     NSString *rating =  [NSString stringWithFormat:@"%@", [national valueForKey:@"Rating"]];
