@@ -18,6 +18,7 @@
 
 @interface MasterViewController () <RMDateSelectionViewControllerDelegate>{
     //NSMutableArray *_objects;
+    NSArray *searchResults;
 }
 @end
 
@@ -147,7 +148,7 @@
     
     NSDate *startDate = [NSDate date];
     NSDateComponents *dc = [[NSDateComponents alloc]init];
-    [dc setDay:-3];
+    [dc setDay:-5];
     NSDate *initialDate = [[NSCalendar currentCalendar] dateByAddingComponents:dc toDate:startDate options:0];
     //NSString *initialDateString = [self convertDateToUrlString:initialDate];
     
@@ -172,35 +173,66 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.top100 count];
+    if(tableView == self.searchDisplayController.searchResultsTableView){
+        return [searchResults count];
+    }else{
+        return [self.top100 count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RatingsSummaryTableViewCell *cell = (RatingsSummaryTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSDictionary *record = [self.top100 objectAtIndex:indexPath.row];
     
-    NSDictionary *nt = record[@"NielsenTitle"];
-    NSDictionary *actual = record[@"Actual"];
-    NSDictionary *national = record[@"National"];
+    id tempCell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    NSString *title = nt[@"FranchiseSeriesName"];
-    NSString *ranking = record[@"ranking"];
+    if([tempCell isKindOfClass:[RatingsSummaryTableViewCell class]]){
+        RatingsSummaryTableViewCell *cell = (RatingsSummaryTableViewCell *)tempCell;
+        
+        NSDictionary *record;
+        if(tableView == self.searchDisplayController.searchResultsTableView){
+            record = [searchResults objectAtIndex:indexPath.row];
+        }else{
+            record = [self.top100 objectAtIndex:indexPath.row];
+        }
+        
+        
+        NSDictionary *nt = record[@"NielsenTitle"];
+        NSDictionary *actual = record[@"Actual"];
+        NSDictionary *national = record[@"National"];
+        
+        NSString *title = nt[@"FranchiseSeriesName"];
+        NSString *ranking = record[@"ranking"];
+        
+        NSString *startDate = actual[@"StartDate"];
+        NSString *prettyDate = [RatingsFormatUtils stringFromJSONDateString:startDate];
+        
+        cell.show.text = title;
+        NSString *detail = [NSString stringWithFormat:@"%@ on %@", prettyDate, record[@"NetworkCode"]];
+        
+        cell.airDate.text = detail;
+        NSString *rating =  [NSString stringWithFormat:@"%@", [national valueForKey:@"Rating"]];
+        
+        cell.rating.text = [rating substringWithRange:NSMakeRange(0, 4)];
+        cell.ranking.text = ranking;
+        
+        return cell;
+    } else{
+        UITableViewCell * c = (UITableViewCell *)tempCell;
+        c.textLabel.text = @"help";
+        
+        return c;
+    }
     
-    NSString *startDate = actual[@"StartDate"];
-    NSString *prettyDate = [RatingsFormatUtils stringFromJSONDateString:startDate];
+    /*
+    RatingsSummaryTableViewCell *cell = (RatingsSummaryTableViewCell *)
+                [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    cell.show.text = title;
-    NSString *detail = [NSString stringWithFormat:@"%@ on %@", prettyDate, record[@"NetworkCode"]];
+    id cell2 = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    cell.airDate.text = detail;
-    NSString *rating =  [NSString stringWithFormat:@"%@", [national valueForKey:@"Rating"]];
+     */
     
-    cell.rating.text = [rating substringWithRange:NSMakeRange(0, 4)];
-    cell.ranking.text = ranking;
-    
-    return cell;
+
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -217,17 +249,33 @@
         
         self.detailViewController.selectedShow = selectedItem;
     }
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        [self performSegueWithIdentifier: @"showDetail" sender: self];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        DetailViewController *destViewController = segue.destinationViewController;
         
+        NSIndexPath *indexPath = nil;
+        if([self.searchDisplayController isActive]){
+            indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            NSDictionary *selectedItem = [searchResults objectAtIndex:indexPath.row];
+            //[[segue destinationViewController] setSelectedShow:selectedItem];
+            destViewController.selectedShow = selectedItem;
+        } else {
+            indexPath = [self.tableView indexPathForSelectedRow];
+            
+            
+            NSDictionary *selectedItem = [self.top100 objectAtIndex:indexPath.row];
+            
+            //[[segue destinationViewController] setSelectedShow:selectedItem];
+            destViewController.selectedShow = selectedItem;
+        }
         
-        NSDictionary *selectedItem = [self.top100 objectAtIndex:indexPath.row];
-        
-        [[segue destinationViewController] setSelectedShow:selectedItem];
     }
 }
 
@@ -276,5 +324,32 @@
     
     return str;
 }
+
+#pragma mark - Search stuff
+
+// Predicate method to determine match
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope{
+    NSPredicate *resultPredicate = [NSPredicate
+                                    predicateWithFormat:@"SELF.NielsenTitle.FranchiseSeriesName beginswith[c] %@",
+                                    searchText];
+    
+    searchResults = [self.top100 filteredArrayUsingPredicate:resultPredicate];
+    NSLog(@"---------results-----------");
+    NSLog(@"%@", searchResults);
+}
+
+// does the filtering
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
+}
+
+
+
 
 @end
