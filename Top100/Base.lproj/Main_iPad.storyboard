@@ -341,6 +341,12 @@
                                 <outlet property="delegate" destination="7bK-jq-Zjz" id="E3m-5f-vph"/>
                             </connections>
                         </searchBar>
+                        <label key="tableFooterView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8b5-bI-hLD">
+                            <rect key="frame" x="0.0" y="832" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="WCw-Qf-5nD" customClass="RatingsSummaryTableViewCell">
                                 <rect key="frame" x="0.0" y="130" width="320" height="44"/>
@@ -350,23 +356,29 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDE-SM-Dyd">
-                                            <rect key="frame" x="20" y="2" width="261" height="20"/>
+                                            <rect key="frame" x="37" y="3" width="221" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4UP-Oc-GnU">
-                                            <rect key="frame" x="20" y="25" width="261" height="15"/>
+                                            <rect key="frame" x="37" y="26" width="231" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                            <color key="textColor" red="0.32549019610000002" green="0.4039215686" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2.34" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NmN-eg-0Fd">
-                                            <rect key="frame" x="289" y="14" width="25" height="15"/>
+                                            <rect key="frame" x="269" y="10" width="39" height="23"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNQ-ff-bNU">
+                                            <rect key="frame" x="0.0" y="12" width="28" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -374,6 +386,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="airDate" destination="4UP-Oc-GnU" id="tnt-CZ-BcI"/>
+                                    <outlet property="ranking" destination="aNQ-ff-bNU" id="a6d-BF-O6x"/>
                                     <outlet property="rating" destination="NmN-eg-0Fd" id="KYw-Sr-gHN"/>
                                     <outlet property="show" destination="iDE-SM-Dyd" id="xEp-5Z-QDU"/>
                                 </connections>
