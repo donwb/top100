@@ -71,7 +71,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="airDate" destination="Taf-Hn-yxj" id="86j-k5-jqj"/>
                                     <outlet property="ranking" destination="B6R-rw-MCG" id="NH8-nH-pq8"/>

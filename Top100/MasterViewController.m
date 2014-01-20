@@ -180,6 +180,11 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *record = [self.top100 objectAtIndex:indexPath.row];
+    cell.backgroundColor = record[@"Color"];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
@@ -204,11 +209,13 @@
         NSString *title = nt[@"FranchiseSeriesName"];
         NSString *ranking = record[@"ranking"];
         
+        NSString *network = record[@"NetworkCode"];
+        
         NSString *startDate = actual[@"StartDate"];
         NSString *prettyDate = [RatingsFormatUtils stringFromJSONDateString:startDate];
         
         cell.show.text = title;
-        NSString *detail = [NSString stringWithFormat:@"%@ on %@", prettyDate, record[@"NetworkCode"]];
+        NSString *detail = [NSString stringWithFormat:@"%@ on %@", prettyDate, network];
         
         cell.airDate.text = detail;
         NSString *rating =  [NSString stringWithFormat:@"%@", [national valueForKey:@"Rating"]];
@@ -223,15 +230,6 @@
         
         return c;
     }
-    
-    /*
-    RatingsSummaryTableViewCell *cell = (RatingsSummaryTableViewCell *)
-                [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
-    id cell2 = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
-     */
-    
 
 }
 
@@ -293,12 +291,23 @@
     NSMutableArray *newArray = [[NSMutableArray alloc] initWithCapacity:sourceArray.count];
     
     for(NSDictionary *i in sourceArray) {
+        // Set the count
         c++;
         [i setValue:[NSString stringWithFormat:@"%i", c] forKey:@"ranking"];
         
-        [newArray addObject:i];
+        // add an element for the background color
+        // based on if it's a TNT/TBS/TRU airing
+        NSString *network = i[@"NetworkCode"];
+        BOOL isTBS = ([network rangeOfString:@"TBSC" options:NSLiteralSearch].location != NSNotFound);
+        BOOL isTNT = ([network rangeOfString:@"TNT" options:NSLiteralSearch].location != NSNotFound);
+        BOOL isTru = ([network rangeOfString:@"TRU" options:NSLiteralSearch].location != NSNotFound);
+        BOOL isTOON = ([network rangeOfString:@"TOON" options:NSLiteralSearch].location != NSNotFound);
+        UIColor *color = (isTBS || isTNT || isTru || isTOON) ? [UIColor colorWithRed:0.827 green:0.855 blue:0.886 alpha:1] : [UIColor whiteColor];
         
-        //NSLog(@"%@", i);
+        [i setValue:color forKey:@"Color"];
+        
+        
+        [newArray addObject:i];
     }
 
     
