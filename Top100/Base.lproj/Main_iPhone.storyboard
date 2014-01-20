@@ -87,6 +87,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Top 100" id="tQt-TN-PWz">
+                        <barButtonItem key="leftBarButtonItem" image="empty_filter-48" id="YDC-co-riS">
+                            <connections>
+                                <action selector="filterButton:" destination="pGg-6v-bdr" id="NC3-R9-AM2"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Date" style="plain" id="Wpr-8Q-P3d">
                             <connections>
                                 <action selector="changeDate:" destination="pGg-6v-bdr" id="okK-BD-da5"/>
@@ -423,6 +428,9 @@
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="empty_filter-48" width="26" height="26"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
