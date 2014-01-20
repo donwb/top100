@@ -148,7 +148,7 @@
     
     NSDate *startDate = [NSDate date];
     NSDateComponents *dc = [[NSDateComponents alloc]init];
-    [dc setDay:-5];
+    [dc setDay:-6];
     NSDate *initialDate = [[NSCalendar currentCalendar] dateByAddingComponents:dc toDate:startDate options:0];
     //NSString *initialDateString = [self convertDateToUrlString:initialDate];
     
