@@ -244,15 +244,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSDictionary *selectedItem = [self.top100 objectAtIndex:indexPath.row];
-        
-        self.detailViewController.selectedShow = selectedItem;
+    NSDictionary *selectedItem;
+    
+    if (IS_IPAD) {
+        if(tableView == self.searchDisplayController.searchResultsTableView){
+            selectedItem = [searchResults objectAtIndex:indexPath.row];
+            self.detailViewController.selectedShow = selectedItem;
+        } else {
+            selectedItem = [self.top100 objectAtIndex:indexPath.row];
+            
+            self.detailViewController.selectedShow = selectedItem;
+        }
+    } else {
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            [self performSegueWithIdentifier: @"showDetail" sender: self];
+        }
     }
     
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        [self performSegueWithIdentifier: @"showDetail" sender: self];
-    }
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
