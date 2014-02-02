@@ -390,11 +390,14 @@
         filtered = YES;
         
         [self.filterButton setTitle:@"Clear"];
+        [self.filterButtoniPad setTitle:@"Clear" forState:UIControlStateNormal];
         
     } else {
         [self reloadTableViewWithRecipeRecords:preFilterItems];
         filtered = NO;
         [self.filterButton setTitle:@"Filter"];
+        [self.filterButtoniPad setTitle:@"Filter" forState:UIControlStateNormal];
+
     }
     
 }

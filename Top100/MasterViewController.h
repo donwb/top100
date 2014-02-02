@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSArray *top100;
 @property (nonatomic, strong) NSDate *currentDate;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *filterButton;
+@property (weak, nonatomic) IBOutlet UIButton *filterButtoniPad;
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
