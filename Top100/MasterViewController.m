@@ -17,11 +17,10 @@
 #import "RatingsFormatUtils.h"
 
 @interface MasterViewController () <RMDateSelectionViewControllerDelegate>{
-    //NSMutableArray *_objects;
+    NSArray *preFilterItems;
     NSArray *searchResults;
     NSArray *filters;
-    NSString *filterValue;
-    
+    BOOL filtered;
 }
     
 @end
@@ -147,13 +146,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    filters = @[@"Show All", @"TNT", @"TBS", @"TRU", @"TOON"];
+    filters = @[@"TNT", @"TBSC", @"TRU", @"TOON"];
+    filtered = NO;
     
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
     NSDate *startDate = [NSDate date];
     NSDateComponents *dc = [[NSDateComponents alloc]init];
-    [dc setDay:-6];
+    [dc setDay:-8];
     NSDate *initialDate = [[NSCalendar currentCalendar] dateByAddingComponents:dc toDate:startDate options:0];
     //NSString *initialDateString = [self convertDateToUrlString:initialDate];
     
@@ -375,64 +375,30 @@
 #pragma mark - Filter stuff
 
 - (IBAction)filterButton:(id)sender {
-    filterValue = nil;
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 130)];
-    view.backgroundColor = [UIColor whiteColor];
-    view.tag = 666;
-    
-    UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0,-30, 320, 150)];
-    pickerView.delegate = self;
-    pickerView.dataSource = self;
-    pickerView.showsSelectionIndicator = YES;
-    pickerView.hidden = NO;
-    
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button addTarget:self
-               action:@selector(buttonClicked:)
-     forControlEvents:UIControlEventTouchDown];
-    [button setTitle:@"Filter" forState:UIControlStateNormal];
-    button.frame = CGRectMake(-50, 0, 160, 40);
-     
-    
-    [view addSubview:pickerView];
-    [view addSubview:button];
-    [pickerView selectRow:0 inComponent:0 animated:YES];
-    [self.view addSubview:view];
-                
+    if(!filtered){
+        preFilterItems = self.top100;
+        NSPredicate *filterPredicate = [NSPredicate
+                                        predicateWithFormat:@"SELF.NetworkCode IN %@", filters ];
+        
+        
+        NSArray *subArray = [self.top100 filteredArrayUsingPredicate:filterPredicate];
+        NSLog(@"Filtered to %d records", subArray.count);
+        
+        [self reloadTableViewWithRecipeRecords:subArray];
+        
+        filtered = YES;
+        
+        [self.filterButton setTitle:@"Clear"];
+        
+    } else {
+        [self reloadTableViewWithRecipeRecords:preFilterItems];
+        filtered = NO;
+        [self.filterButton setTitle:@"Filter"];
     }
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component {
-    filterValue = [filters objectAtIndex:row];
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return filters.count;
-}
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 1;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    NSString *title = [filters objectAtIndex:row];
-    return title;
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    int sectionWidth = 300;
-    return sectionWidth;
-}
     
- - (void)buttonClicked:(id)button{
-     NSLog(@"clicked");
-     filterValue = filterValue == nil ? @"Show all" : filterValue;
-     
-     NSLog(@"%@", filterValue);
-     
-     UIView *v = [self.view viewWithTag:666];
-     [v removeFromSuperview];
- }
+}
+
+
 
 @end

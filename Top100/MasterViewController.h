@@ -11,11 +11,11 @@
 
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController<UIPickerViewDelegate, UIPickerViewDataSource>
+@interface MasterViewController : UITableViewController
 
 @property (nonatomic, strong) NSArray *top100;
-//@property (nonatomic, strong) TopHundred *top100;
 @property (nonatomic, strong) NSDate *currentDate;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *filterButton;
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
