@@ -153,12 +153,17 @@
     
     NSDate *startDate = [NSDate date];
     NSDateComponents *dc = [[NSDateComponents alloc]init];
-    [dc setDay:-8];
+    [dc setDay:-7];
     NSDate *initialDate = [[NSCalendar currentCalendar] dateByAddingComponents:dc toDate:startDate options:0];
     //NSString *initialDateString = [self convertDateToUrlString:initialDate];
     
     [self downloadJSON:initialDate];
     
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
 }
 
@@ -187,6 +192,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *record = [self.top100 objectAtIndex:indexPath.row];
+    
     cell.backgroundColor = record[@"Color"];
 }
 
@@ -260,7 +266,7 @@
         }
     } else {
         if (tableView == self.searchDisplayController.searchResultsTableView) {
-            [self performSegueWithIdentifier: @"showDetail" sender: self];
+//            [self performSegueWithIdentifier: @"showDetail" sender: self];
         }
     }
     

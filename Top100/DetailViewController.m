@@ -139,8 +139,19 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
     [self configureView];
     
+    
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    
+    //Not working for some reason
+//    [self.scrollView setContentSize:CGSizeMake(0, 568)];    
 }
 
 - (void)didReceiveMemoryWarning

@@ -44,6 +44,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *gappedIndicator;
 
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 
 
